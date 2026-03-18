@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".DashboardActivity">
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- Background -->
+        <ImageView
+            android:id="@+id/ivAnimatedBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.95"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_motion_gradient" />
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:navigationIcon="@drawable/ic_menu"
+                app:title="Dashboard"
+                app:titleTextColor="@color/hg_onSurface" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Scroll Content -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/dashboardScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="20dp">
+
+                <!-- ================= HEADER ================= -->
+                <TextView
+                    android:id="@+id/headerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HydroGuard"
+                    android:fontFamily="@font/inter"
+                    android:textColor="@color/hg_sectionTitle"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.03"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/headerSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live monitoring, alerts and valve control."
+                    android:fontFamily="@font/inter"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/hg_muted"
+                    android:alpha="0.85"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/headerTitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!-- ================= HERO CARD ================= -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/heroCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:strokeColor="@color/hg_outline"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/headerSubtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp">
+
+                        <!-- keep for old code -->
+                        <TextView
+                            android:id="@+id/tvDashboardTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="HydroGuard"
+                            android:fontFamily="@font/inter"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/hg_onSurface"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvDeviceMeta"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="HG001 • Online"
+                            android:fontFamily="@font/inter"
+                            android:textSize="13sp"
+                            android:textColor="@color/hg_muted"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDashboardTitle" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NORMAL"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter"
+                            android:textSize="12sp"
+                            android:minHeight="32dp"
+                            app:chipCornerRadius="999dp"
+                            app:chipBackgroundColor="@color/hg_accentTealContainer"
+                            android:textColor="@color/hg_accentTeal"
+                            app:chipStrokeColor="@color/hg_outline"
+                            app:chipStrokeWidth="1dp"
+                            app:chipStartPadding="10dp"
+                            app:chipEndPadding="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/flowValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="0.00 L/min"
+                            android:fontFamily="@font/inter"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_accentTeal"
+                            android:letterSpacing="0.015"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/chipStatus" />
+
+                        <TextView
+                            android:id="@+id/tvFlowLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Total Live Flow"
+                            android:fontFamily="@font/inter"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_muted"
+                            android:alpha="0.92"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/flowValue" />
+
+                        <ImageView
+                            android:id="@+id/ivToday"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginTop="14dp"
+                            android:src="@drawable/ic_billing"
+                            app:tint="@color/hg_muted"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvFlowLabel" />
+
+                        <TextView
+                            android:id="@+id/tvTodayLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Today"
+                            android:fontFamily="@font/inter"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_muted"
+                            android:alpha="0.95"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintStart_toEndOf="@id/ivToday"
+                            app:layout_constraintTop_toTopOf="@id/ivToday"
+                            app:layout_constraintBottom_toBottomOf="@id/ivToday" />
+
+                        <TextView
+                            android:id="@+id/usageValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00 L"
+                            android:fontFamily="@font/inter"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy"
+                            android:layout_marginStart="10dp"
+                            app:layout_constraintStart_toEndOf="@id/tvTodayLabel"
+                            app:layout_constraintTop_toTopOf="@id/ivToday"
+                            app:layout_constraintBottom_toBottomOf="@id/ivToday" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ================= 2-LINE CONTROL CARDS ================= -->
+                <LinearLayout
+                    android:id="@+id/linesRow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:baselineAligned="false"
+                    app:layout_constraintTop_toBottomOf="@id/heroCard"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <!-- Line A -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLineA"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="@color/hg_outline"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:id="@+id/tvLineATitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Line A • Shower"
+                                android:fontFamily="@font/inter"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@color/hg_brandNavy"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvLineAFlow"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="0.00 L/min"
+                                android:fontFamily="@font/inter"
+                                android:textStyle="bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/hg_accentTeal"
+                                android:layout_marginTop="8dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvLineATitle" />
+
+                            <!-- OPEN = teal -->
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipLineAValve"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="VALVE: OPEN"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/inter"
+                                android:minHeight="30dp"
+                                android:layout_marginTop="10dp"
+                                app:chipCornerRadius="999dp"
+                                app:chipBackgroundColor="@color/hg_accentTealContainer"
+                                app:chipStrokeColor="@color/hg_outline"
+                                app:chipStrokeWidth="1dp"
+                                android:textColor="@color/hg_accentTeal"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvLineAFlow" />
+
+                            <!-- NO LEAK = teal (safe) -->
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipLineALeak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LEAK: NO"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/inter"
+                                android:minHeight="30dp"
+                                android:layout_marginTop="6dp"
+                                app:chipCornerRadius="999dp"
+                                app:chipBackgroundColor="@color/hg_accentTealContainer"
+                                app:chipStrokeColor="@color/hg_outline"
+                                app:chipStrokeWidth="1dp"
+                                android:textColor="@color/hg_accentTeal"
+                                app:layout_constraintStart_toStartOf="@id/chipLineAValve"
+                                app:layout_constraintTop_toBottomOf="@id/chipLineAValve" />
+
+                            <!-- Close = danger action -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnLineAToggle"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:text="Close"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:layout_marginTop="12dp"
+                                android:backgroundTint="@color/hg_dangerContainer"
+                                android:textColor="@color/hg_dangerText"
+                                app:cornerRadius="14dp"
+                                app:strokeColor="@color/hg_outline"
+                                app:strokeWidth="1dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/chipLineALeak"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Line B -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardLineB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:strokeColor="@color/hg_outline"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="14dp">
+
+                            <TextView
+                                android:id="@+id/tvLineBTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Line B • Tap"
+                                android:fontFamily="@font/inter"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@color/hg_brandNavy"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvLineBFlow"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="0.00 L/min"
+                                android:fontFamily="@font/inter"
+                                android:textStyle="bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/hg_accentTeal"
+                                android:layout_marginTop="8dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvLineBTitle" />
+
+                            <!-- OPEN = teal -->
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipLineBValve"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="VALVE: OPEN"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/inter"
+                                android:minHeight="30dp"
+                                android:layout_marginTop="10dp"
+                                app:chipCornerRadius="999dp"
+                                app:chipBackgroundColor="@color/hg_accentTealContainer"
+                                app:chipStrokeColor="@color/hg_outline"
+                                app:chipStrokeWidth="1dp"
+                                android:textColor="@color/hg_accentTeal"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvLineBFlow" />
+
+                            <!-- NO LEAK = teal -->
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipLineBLeak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LEAK: NO"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/inter"
+                                android:minHeight="30dp"
+                                android:layout_marginTop="6dp"
+                                app:chipCornerRadius="999dp"
+                                app:chipBackgroundColor="@color/hg_accentTealContainer"
+                                app:chipStrokeColor="@color/hg_outline"
+                                app:chipStrokeWidth="1dp"
+                                android:textColor="@color/hg_accentTeal"
+                                app:layout_constraintStart_toStartOf="@id/chipLineBValve"
+                                app:layout_constraintTop_toBottomOf="@id/chipLineBValve" />
+
+                            <!-- Close = danger -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnLineBToggle"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:text="Close"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:layout_marginTop="12dp"
+                                android:backgroundTint="@color/hg_dangerContainer"
+                                android:textColor="@color/hg_dangerText"
+                                app:cornerRadius="14dp"
+                                app:strokeColor="@color/hg_outline"
+                                app:strokeWidth="1dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/chipLineBLeak"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- ====== Category Summary ====== -->
+                <TextView
+                    android:id="@+id/categorySummaryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today's Category Summary"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:textColor="@color/hg_brandNavy"
+                    android:letterSpacing="0.02"
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintTop_toBottomOf="@id/linesRow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <View
+                    android:id="@+id/lineCat"
+                    android:layout_width="34dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/hg_accentTeal"
+                    app:layout_constraintTop_toBottomOf="@id/categorySummaryTitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/categoryUsageRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/lineCat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- ====== Goals ====== -->
+                <TextView
+                    android:id="@+id/goalsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Water Goals"
+                    android:fontFamily="@font/inter"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/hg_brandNavy"
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintTop_toBottomOf="@id/categoryUsageRecycler"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalsSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track daily and monthly usage"
+                    android:textSize="13sp"
+                    android:textColor="@color/hg_muted"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/goalsTitle"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/lineGoals"
+                    android:layout_width="34dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/hg_secondary"
+                    app:layout_constraintTop_toBottomOf="@id/goalsSubtitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardDailyGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="8dp"
+                    app:strokeColor="@color/hg_outline"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/lineGoals"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:id="@+id/dailyLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daily Goal"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/dailyProgress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="22dp"
+                            android:max="100"
+                            android:progressDrawable="@drawable/progress_rounded_secondary"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@id/dailyLabel"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <TextView
+                            android:id="@+id/dailyProgressText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 / 0 L"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="6dp"
+                            app:layout_constraintTop_toBottomOf="@id/dailyProgress"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMonthlyGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="8dp"
+                    app:strokeColor="@color/hg_outline"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/cardDailyGoal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:id="@+id/monthlyLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monthly Goal"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ProgressBar
+                            android:id="@+id/monthlyProgress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="22dp"
+                            android:max="100"
+                            android:progressDrawable="@drawable/progress_rounded_teal"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@id/monthlyLabel"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <TextView
+                            android:id="@+id/monthlyProgressText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 / 0 L"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="6dp"
+                            app:layout_constraintTop_toBottomOf="@id/monthlyProgress"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ====== Sensors ====== -->
+                <TextView
+                    android:id="@+id/sensorsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connected Sensors"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/hg_brandNavy"
+                    android:alpha="0.99"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintTop_toBottomOf="@id/cardMonthlyGoal"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/lineSensors"
+                    android:layout_width="34dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/hg_accentTeal"
+                    app:layout_constraintTop_toBottomOf="@id/sensorsTitle"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sensorsRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="18dp"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/lineSensors"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Drawer menu -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+
+        android:background="@color/hg_surface"
+        app:menu="@menu/drawer_menu"
+        app:itemIconTint="@color/hg_onSurface"
+        app:itemTextColor="@color/hg_onSurface"
+        app:itemBackground="@drawable/drawer_item_bg" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

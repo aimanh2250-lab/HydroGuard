@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".HistoryActivity">
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ✅ Background Image (same as Dashboard / Alerts / Billing) -->
+        <ImageView
+            android:id="@+id/ivAnimatedBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.95"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_motion_gradient"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="History"
+            app:titleTextColor="@color/hg_brandNavy"
+            app:navigationIcon="@drawable/ic_menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Scroll -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/historyScroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:clipToPadding="false"
+            android:paddingBottom="14dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="18dp">
+
+                <!-- ================= Header (Billing/Insights style) ================= -->
+                <LinearLayout
+                    android:id="@+id/headerRow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_history"
+                        android:contentDescription="History"
+                        app:tint="@color/hg_primary"
+                        android:layout_marginEnd="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- ✅ KEEP ID for Java -->
+                        <TextView
+                            android:id="@+id/headerTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Usage History"
+                            android:textColor="@color/hg_brandNavy"
+                            android:letterSpacing="0.02"
+                            android:textSize="28sp"
+                            android:textStyle="bold"/>
+
+                        <!-- ✅ KEEP ID for Java -->
+                        <TextView
+                            android:id="@+id/headerSubtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Track daily, weekly, and monthly usage by category."
+                            android:textSize="14sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- ================= Filters Card ================= -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/filterCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="@color/hg_surface"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeColor="@color/hg_outline"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/headerRow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Period label -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Period"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy"
+                            android:alpha="0.9"/>
+
+                        <!-- Chips -->
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupPeriod"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:singleSelection="true"
+                            app:selectionRequired="true"
+                            app:chipSpacingHorizontal="10dp">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipDaily"
+                                style="@style/Widget.Material3.Chip.Assist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Daily"
+                                android:textStyle="bold"
+                                android:checkable="true"
+                                android:checked="true"
+                                app:chipBackgroundColor="@color/hg_primaryContainer"
+                                android:textColor="@color/hg_primary"/>
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipWeekly"
+                                style="@style/Widget.Material3.Chip.Assist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weekly"
+                                android:textStyle="bold"
+                                android:checkable="true"
+                                app:chipBackgroundColor="@color/hg_secondaryContainer"
+                                android:textColor="@color/hg_primary"/>
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipMonthly"
+                                style="@style/Widget.Material3.Chip.Assist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly"
+                                android:textStyle="bold"
+                                android:checkable="true"
+                                app:chipBackgroundColor="@color/hg_secondaryContainer"
+                                android:textColor="@color/hg_primary"/>
+                        </com.google.android.material.chip.ChipGroup>
+
+                        <!-- Category label -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Category"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy"
+                            android:layout_marginTop="14dp"
+                            android:alpha="0.9"/>
+
+                        <!-- Category Spinner -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp"
+                            app:cardBackgroundColor="@color/hg_field_bg">
+
+                            <Spinner
+                                android:id="@+id/spinnerCategory"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:spinnerMode="dropdown"
+                                android:background="@android:color/transparent"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Picker card (shown in Weekly/Monthly mode) -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/pickerCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="@color/hg_outline"
+                            app:strokeWidth="1dp"
+                            app:cardBackgroundColor="@android:color/white"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:id="@+id/pickerRow"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:padding="12dp"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_calendar"
+                                    app:tint="@color/hg_muted"
+                                    android:contentDescription="Calendar"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Pick a period (prototype: current week/month)"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/hg_muted"
+                                    android:layout_marginStart="10dp"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickWeek"
+                                    style="@style/Widget.Material3.Button.TonalButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="Week"
+                                    android:textStyle="bold"
+                                    android:visibility="gone"
+                                    app:cornerRadius="14dp"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickMonth"
+                                    style="@style/Widget.Material3.Button.TonalButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="Month"
+                                    android:textStyle="bold"
+                                    android:layout_marginStart="10dp"
+                                    android:visibility="gone"
+                                    app:cornerRadius="14dp"/>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Hidden RadioGroup (keep for your existing code logic) -->
+                        <RadioGroup
+                            android:id="@+id/periodGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+
+                            <RadioButton
+                                android:id="@+id/rbDaily"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Daily"/>
+
+                            <RadioButton
+                                android:id="@+id/rbWeekly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weekly"/>
+
+                            <RadioButton
+                                android:id="@+id/rbMonthly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly"/>
+                        </RadioGroup>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ================= Chart Card ================= -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/chartCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeColor="@color/hg_outline"
+                    app:strokeWidth="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/filterCard"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Overview"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hg_brandNavy" />
+
+                        <TextView
+                            android:id="@+id/overviewSubtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last 60 days"
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="6dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trend line updates based on period and category."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="6dp"/>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/usageChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@android:color/transparent"
+                            android:clipToPadding="false"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"/>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ================= List Title ================= -->
+                <TextView
+                    android:id="@+id/listTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daily Records"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/hg_onSurface"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/chartCard"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!-- Recycler -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/historyRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/listTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- Empty state (optional) -->
+                <TextView
+                    android:id="@+id/tvEmptyHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="No history yet. Start using water to see records here."
+                    android:textColor="@color/hg_muted"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:padding="18dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/listTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Drawer menu -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+
+        android:background="@color/hg_surface"
+        app:menu="@menu/drawer_menu"
+        app:itemIconTint="@color/hg_onSurface"
+        app:itemTextColor="@color/hg_onSurface"
+        app:itemBackground="@drawable/drawer_item_bg" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

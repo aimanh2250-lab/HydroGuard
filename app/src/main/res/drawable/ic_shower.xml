@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Shower head -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/hg_primary"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M4,6
+            C4,4 6,2 10,2
+            H20
+            V6
+            Z" />
+
+    <!-- Neck -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/hg_primary"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M10,6 V9" />
+
+    <!-- Water streams -->
+    <path
+        android:strokeColor="@color/hg_primary"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="
+            M7,12 V14
+            M10,12 V15
+            M13,12 V14
+            M16,12 V15
+            M19,12 V14" />
+</vector>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="hg_primary">#2563EB</color>
+    <color name="hg_primaryContainer">#DBEAFE</color> <!-- ✅ ADD THIS -->
+    <color name="hg_onPrimary">#FFFFFF</color>
+
+    <color name="hg_secondary">#0EA5E9</color>
+    <color name="hg_onSecondary">#FFFFFF</color>
+
+    <color name="hg_background">#F8FAFF</color>
+    <color name="hg_surface">#FFFFFF</color>
+    <color name="hg_onSurface">#0F172A</color>
+
+    <color name="hg_outline">#E2E8F0</color>
+
+    <!-- UI -->
+    <color name="hg_muted">#64748B</color>
+    <color name="hg_field_bg">#F8FAFC</color>
+
+    <color name="hg_warning">#F57C00</color>
+    <color name="hg_warningContainer">#FFF3E0</color>
+
+    <color name="hg_error">#D32F2F</color>
+    <color name="hg_errorContainer">#FFEBEE</color>
+
+    <!-- add into res/values/colors.xml -->
+    <color name="hg_secondaryContainer">#E0F2FE</color>
+
+    <color name="hg_brandNavy">#0B2A6F</color>        <!-- deep navy (premium) -->
+    <color name="hg_accentTeal">#14B8A6</color>
+    <color name="hg_accentTealContainer">#CCFBF1</color>
+
+    <!-- Button danger tones (soft but clear) -->
+    <color name="hg_dangerContainer">#FCE7F3</color>  <!-- soft pink -->
+    <color name="hg_dangerText">#BE185D</color>
+
+    <color name="hg_sectionTitle">#1F3A5F</color>
+
+    <color name="hg_highlight">#38BDF8</color> <!-- sky blue -->
+    <color name="hg_dark">#020617</color>
+    <color name="hg_success">#22C55E</color>
+    <color name="hg_successContainer">#DCFCE7</color>
+
+    <!-- strong rose -->
+    <color name="splash_wave_1">#0A3D62</color>
+    <color name="splash_wave_2">#0B4F6C</color>
+    <color name="splash_wave_3">#136F63</color>
+
+</resources>

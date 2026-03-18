@@ -1,0 +1,40 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base vertical gradient (more contrast) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#BFE3FF"
+                android:centerColor="#E6F3FF"
+                android:endColor="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Soft blob 1 (stronger + more saturated blue) -->
+    <item android:top="-140dp" android:right="-160dp">
+        <shape android:shape="oval">
+            <size android:width="560dp" android:height="560dp"/>
+            <!-- 0x33 = ~20% alpha -->
+            <solid android:color="#33008CFF"/>
+        </shape>
+    </item>
+
+    <!-- Soft blob 2 (stronger purple/indigo) -->
+    <item android:bottom="-160dp" android:left="-180dp">
+        <shape android:shape="oval">
+            <size android:width="660dp" android:height="660dp"/>
+            <solid android:color="#2E5B21FF"/> <!-- ~18% alpha -->
+        </shape>
+    </item>
+
+    <!-- Extra accent blob (gives “striking” pop) -->
+    <item android:top="140dp" android:left="-120dp">
+        <shape android:shape="oval">
+            <size android:width="420dp" android:height="420dp"/>
+            <solid android:color="#2600D4FF"/> <!-- ~15% alpha -->
+        </shape>
+    </item>
+
+</layer-list>

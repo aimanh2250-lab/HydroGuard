@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base theme (API 24+) -->
+    <style name="Base.Theme.HydroGuard"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Fonts -->
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="fontFamily">@font/inter</item>
+
+        <!-- Colors -->
+        <item name="colorPrimary">@color/hg_primary</item>
+        <item name="colorOnPrimary">@color/hg_onPrimary</item>
+        <item name="colorSecondary">@color/hg_secondary</item>
+        <item name="colorOnSecondary">@color/hg_onSecondary</item>
+
+        <!-- Surfaces -->
+        <item name="android:colorBackground">@color/hg_background</item>
+        <item name="colorSurface">@color/hg_surface</item>
+        <item name="colorOnSurface">@color/hg_onSurface</item>
+        <item name="colorOutline">@color/hg_outline</item>
+
+        <!-- Prevent white flash -->
+        <item name="android:windowBackground">@color/hg_background</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/hg_background</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <!-- Global widgets -->
+        <item name="textInputStyle">@style/Widget.HydroGuard.TextInputLayout</item>
+        <item name="materialButtonStyle">@style/Widget.HydroGuard.Button</item>
+
+    </style>
+
+    <!-- Alias used everywhere -->
+    <style name="Theme.HydroGuard"
+        parent="Base.Theme.HydroGuard" />
+
+</resources>

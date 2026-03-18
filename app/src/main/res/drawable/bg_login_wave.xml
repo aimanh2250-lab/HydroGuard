@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 🌊 Base vertical water gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#E6F4FF"
+                android:centerColor="#F2F9FF"
+                android:endColor="#FFFFFF"
+                android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- 💧 Soft top-left water glow -->
+    <item
+        android:top="-220dp"
+        android:left="-220dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="420dp"
+                android:startColor="#55BFEFFF"
+                android:centerColor="#33BFEFFF"
+                android:endColor="#00BFEFFF" />
+        </shape>
+    </item>
+
+    <!-- 💧 Soft bottom-right water glow -->
+    <item
+        android:bottom="-260dp"
+        android:right="-260dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="460dp"
+                android:startColor="#44D6F3FF"
+                android:centerColor="#22D6F3FF"
+                android:endColor="#00D6F3FF" />
+        </shape>
+    </item>
+
+    <!-- ✨ Subtle center ripple light -->
+    <item
+        android:top="160dp"
+        android:right="-180dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="220dp"
+                android:startColor="#22A5D8FF"
+                android:endColor="#00A5D8FF" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.HydroGuard"
+        parent="Base.Theme.HydroGuard">
+
+        <item name="android:windowSplashScreenBackground">
+            #0A3D62
+        </item>
+
+        <item name="android:windowSplashScreenAnimatedIcon">
+            @drawable/ic_hydroguard_logo
+        </item>
+
+        <item name="android:windowSplashScreenIconBackgroundColor">
+            #0A3D62
+        </item>
+
+    </style>
+
+</resources>

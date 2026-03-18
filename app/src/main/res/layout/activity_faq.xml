@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FaqActivity">
+
+    <!-- Background -->
+    <ImageView
+        android:id="@+id/ivAnimatedBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.95"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_motion_gradient"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Toolbar (Back arrow via code) -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:title="Help and FAQ"
+        app:titleTextColor="@color/hg_brandNavy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/faqScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="18dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:id="@+id/headerRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/ic_help"
+                    android:contentDescription="FAQ"
+                    app:tint="@color/hg_primary"
+                    android:layout_marginEnd="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Help and FAQ"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hg_brandNavy"
+                        android:letterSpacing="0.02" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quick answers for HydroGuard users"
+                        android:textSize="14sp"
+                        android:textColor="@color/hg_muted"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- FAQ Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/faqCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginTop="14dp"
+                app:cardBackgroundColor="@color/hg_surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:strokeColor="@color/hg_outline"
+                app:strokeWidth="1dp"
+                app:layout_constraintTop_toBottomOf="@id/headerRow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- FAQ items (same IDs as Java) -->
+                    <!-- 1 -->
+                    <LinearLayout
+                        android:id="@+id/faqRow1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Why do I receive abnormal usage alerts?"
+                                android:textStyle="bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/hg_brandNavy"
+                                android:letterSpacing="0.015" />
+
+                            <ImageView
+                                android:id="@+id/faqArrow1"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/hg_brandNavy"
+                                android:alpha="0.7"
+                                android:contentDescription="@null"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/faqAnswer1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="HydroGuard compares your usage with your goals and typical patterns. If usage spikes (possible leak or tap left open), it triggers an alert."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@color/hg_outline"/>
+
+                    <!-- 2 -->
+                    <LinearLayout
+                        android:id="@+id/faqRow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="What happens when the device is offline?"
+                                android:textStyle="bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/hg_brandNavy"
+                                android:letterSpacing="0.015" />
+
+                            <ImageView
+                                android:id="@+id/faqArrow2"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/hg_brandNavy"
+                                android:alpha="0.7"
+                                android:contentDescription="@null"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/faqAnswer2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="If HG001 is offline, live readings may pause. Your last stored history remains available. Updates resume automatically when it reconnects."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@color/hg_outline"/>
+
+                    <!-- 3 -->
+                    <LinearLayout
+                        android:id="@+id/faqRow3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="How are daily and monthly goals used?"
+                                android:textStyle="bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/hg_brandNavy"
+                                android:letterSpacing="0.015" />
+
+                            <ImageView
+                                android:id="@+id/faqArrow3"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/hg_brandNavy"
+                                android:alpha="0.7"
+                                android:contentDescription="@null"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/faqAnswer3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Goals show progress (50%, 80%, 100%) and help HydroGuard detect unusual usage compared to normal consumption."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@color/hg_outline"/>
+
+                    <!-- 4 -->
+                    <LinearLayout
+                        android:id="@+id/faqRow4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Can I use a different account on the same phone?"
+                                android:textStyle="bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/hg_brandNavy"
+                                android:letterSpacing="0.015" />
+
+                            <ImageView
+                                android:id="@+id/faqArrow4"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/hg_brandNavy"
+                                android:alpha="0.7"
+                                android:contentDescription="@null"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/faqAnswer4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yes. HydroGuard stores goals, alerts and history under your account UID. When you login to another account, it shows that account’s data."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@color/hg_outline"/>
+
+                    <!-- 5 -->
+                    <LinearLayout
+                        android:id="@+id/faqRow5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Is manual valve close the same as safety shutoff?"
+                                android:textStyle="bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/hg_brandNavy"
+                                android:letterSpacing="0.015" />
+
+                            <ImageView
+                                android:id="@+id/faqArrow5"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/hg_brandNavy"
+                                android:alpha="0.7"
+                                android:contentDescription="@null"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/faqAnswer5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No. Manual close is temporary. Safety shutoff (latched) only happens when leak protection triggers the safety mode."
+                            android:textSize="12sp"
+                            android:textColor="@color/hg_muted"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                app:layout_constraintTop_toBottomOf="@id/faqCard"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="6dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/hg_outline"
+    app:cardBackgroundColor="@color/hg_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tvPayMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="January 2026"
+            android:textStyle="bold"
+            android:textColor="@color/hg_onSurface"/>
+
+        <TextView
+            android:id="@+id/tvPayMeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FPX • 2026-01-10 21:30"
+            android:textSize="12sp"
+            android:textColor="@color/hg_muted"
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvPayAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RM 12.34"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/hg_primary"
+            android:layout_marginTop="10dp"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipPayStatus"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUCCESS"
+            android:layout_marginTop="10dp"
+            app:chipBackgroundColor="@color/hg_field_bg"
+            app:chipStrokeColor="@color/hg_outline"
+            app:chipStrokeWidth="1dp"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

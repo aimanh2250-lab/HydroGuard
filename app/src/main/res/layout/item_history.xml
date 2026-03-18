@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="14dp"
+    android:layout_marginEnd="14dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/hg_outline"
+    app:cardBackgroundColor="@color/hg_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ================= Top Row: Date + Usage Chip + Delete ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/historyDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2025-11-18"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/hg_brandNavy" />
+
+            <!-- Usage as a small chip-like label -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/historyUsage"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.4 L"
+                android:textStyle="bold"
+                android:textColor="@color/hg_primary"
+                app:chipBackgroundColor="@color/hg_primaryContainer"
+                app:chipStrokeColor="@color/hg_outline"
+                app:chipStrokeWidth="1dp"
+                app:chipIconVisible="true"
+                app:chipIcon="@drawable/ic_flow"
+                app:iconStartPadding="8dp"
+                app:textStartPadding="6dp"
+                app:textEndPadding="10dp" />
+
+            <!-- OPTIONAL Delete: hidden until you implement -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Delete"
+                android:padding="8dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_delete"
+                app:tint="@color/hg_muted" />
+        </LinearLayout>
+
+        <!-- ================= Subtitle ================= -->
+        <TextView
+            android:id="@+id/historySub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24-hour usage pattern"
+            android:textSize="13sp"
+            android:textColor="@color/hg_muted"
+            android:layout_marginTop="6dp" />
+
+        <!-- ================= Mini Chart ================= -->
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/historyDayChart"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:clipToPadding="false"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        <!-- ================= Categories ================= -->
+        <TextView
+            android:id="@+id/categoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categories"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/hg_brandNavy"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/categoryBreakdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kitchen 5.0 L • Bathroom 7.4 L • Uncategorized 0.0 L"
+            android:textSize="13sp"
+            android:textColor="@color/hg_onSurface"
+            android:alpha="0.85"
+            android:layout_marginTop="6dp"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

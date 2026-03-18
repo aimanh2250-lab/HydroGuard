@@ -1,0 +1,23 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base gradient (slightly deeper top) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#DDEEFF"
+                android:endColor="#F7FAFF"
+                android:angle="270"/>
+        </shape>
+    </item>
+
+    <!-- Soft wave overlay -->
+    <item android:bottom="120dp">
+        <shape>
+            <gradient
+                android:startColor="#CFE7FF"
+                android:endColor="#EAF5FF"
+                android:angle="270"/>
+        </shape>
+    </item>
+
+</layer-list>
